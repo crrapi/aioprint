@@ -1,11 +1,17 @@
-import copy
-import functools
-import asyncio
+import sys
+from asyncio import get_event_loop
 
-_print_copy = copy.copy(print)
-_loop = asyncio.get_event_loop()
+from aiofiles.threadpool.binary import AsyncBufferedIOBase
 
-async def print(*args, **kwargs):
+async_stdout_buffer = AsyncBufferedIOBase(
+    sys.stdout, loop=get_event_loop(), executor=None
+)
+
+# Exact signature like the actual print() function
+async def print(*objects, sep=" ", end="\n", flush=False):
     """Asynchronously prints things!"""
-    _partial_print = functools.partial(_print_copy, *args, **kwargs)
-    await _loop.run_in_executor(None, _partial_print)
+    objects = [str(i) for i in objects]
+    printable_string = f"{sep.join(objects)}{end}"
+    await async_stdout_buffer.write(printable_string)
+    if flush:
+        await async_stdout_buffer.flush()
