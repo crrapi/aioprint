@@ -1,13 +1,25 @@
 # aioprint
-An inherently useless Python library so you can log things without blocking your async program at all.
+`aioprint` provides an asynchronous interface for `print` by using `aiofiles` as a backend.
+
 # Installation
+### Using PyPI
+`pip3 install -U aioprint`
+
+### Using git with this GitHub repo
 `pip3 install -U git+https://github.com/crrapi/aioprint`
-# Disclaimer
-#### The practical use of this is trivial. You're better off using print, this is for the memes :^)
+
 # Usage
 ```python
-from aioprint import print
+import aioprint
+import asyncio
 
-# in a coroutine function
-await print("Non-blocking! Wew!")
+async def main():
+    await print("yes")
+    await print(["sub", 2, "pew"], flush=True, end="")
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
 ```
+
+# Acknowledgements
+Special thanks to [Gelbpunkt aka Adrian](https://github.com/Gelbpunkt) for reviving this and making it useful
