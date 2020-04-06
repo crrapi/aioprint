@@ -10,12 +10,24 @@
 
 # Usage
 ```python
-import aioprint
 import asyncio
+import sys
+
+import aioprint
+
+
+class A:
+    async def __aiostr__(self):
+        # The __aiostr__ magic method is preferred
+        # over the __str__ method to provide
+        # a coroutine interface
+        return "pony trick yasuo"
 
 async def main():
-    await print("yes")
-    await print(["sub", 2, "pew"], flush=True, end="")
+    await print(["sub", 2, "pew"], "he is great", end="", sep="LOL")
+    a = A()
+    await print("error", file=sys.stderr)
+    await print(a, file="out.txt")
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
