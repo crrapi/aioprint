@@ -17,6 +17,7 @@ import aioprint
 
 
 class A:
+
     async def __aiostr__(self):
         # The __aiostr__ magic method is preferred
         # over the __str__ method to provide

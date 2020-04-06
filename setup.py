@@ -8,8 +8,8 @@ with open("requirements.txt", "r") as f:
 
 setuptools.setup(
     name="aioprint",
-    version="0.0.2",
-    description="Provides an asynchronous interface for print().",
+    version="0.0.3",
+    description="Provides an asynchronous interface for print() using aiofiles.",
     url="https://github.com/crrapi/aioprint",
     author="crrapi",
     long_description=long_description,
