@@ -11,7 +11,7 @@ with open("requirements.txt", "r") as f:
 
 setup(
     name="aioprint",
-    version="0.0.3",
+    version="0.0.4",
     description="Provides an asynchronous interface for print() using aiofiles.",
     url="https://github.com/crrapi/aioprint",
     author="crrapi",
