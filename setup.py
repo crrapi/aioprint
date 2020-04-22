@@ -1,4 +1,7 @@
-import setuptools
+from distutils.core import setup
+
+import setuptools  # noqa
+from Cython.Build import cythonize
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -6,7 +9,7 @@ with open("README.md", "r") as f:
 with open("requirements.txt", "r") as f:
     install_requires = f.read().splitlines()
 
-setuptools.setup(
+setup(
     name="aioprint",
     version="0.0.3",
     description="Provides an asynchronous interface for print() using aiofiles.",
@@ -15,7 +18,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    packages=setuptools.find_packages(),
+    ext_modules=cythonize("aioprint/*.py", compiler_directives={"language_level": "3"}),
     install_requires=install_requires,
     classifiers=[
         "Programming Language :: Python :: 3.6",

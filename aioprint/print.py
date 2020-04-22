@@ -6,8 +6,8 @@ import aiofiles
 from aiofiles.threadpool.binary import AsyncBufferedIOBase
 
 _loop = get_event_loop()
-async_stdout_buffer = AsyncBufferedIOBase(sys.stdout, loop=_loop, executor=None)
 
+async_stdout_buffer = AsyncBufferedIOBase(sys.stdout, loop=_loop, executor=None)
 async_stderr_buffer = AsyncBufferedIOBase(sys.stderr, loop=_loop, executor=None)
 
 # Exact signature like the actual print() function
